@@ -9,10 +9,6 @@ from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 from pymodbus.server.sync import ModbusSerialServer, ModbusTcpServer
 from pymodbus.transaction import ModbusRtuFramer, ModbusSocketFramer
 
-logging.basicConfig()
-log = logging.getLogger()
-log.setLevel(logging.DEBUG)
-
 co_data = [False, False, True]
 di_data = [True, False]
 ir_data = [
