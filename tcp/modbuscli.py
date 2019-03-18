@@ -2,7 +2,7 @@ from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import sys
 import argparse
 
-IP = '10.144.48.136'
+IP = '192.168.5.24'
 PORT = 502
 
 client = ModbusClient(IP, PORT)

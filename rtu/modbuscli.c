@@ -32,10 +32,11 @@ int main(int argc, char *argv[])
 
     char *dev_path  = argv[1];
     int  baudrate   = atoi(argv[2]);
-    int  mode       = atoi(argv[3]);
-    int device_id   = atoi(argv[4]);
-    int address     = atoi(argv[5]);
-    int qty         = atoi(argv[6]);
+    int  parity     = argv[3][0];
+    int  mode       = atoi(argv[4]);
+    int device_id   = atoi(argv[5]);
+    int address     = atoi(argv[6]);
+    int qty         = atoi(argv[7]);
     printf("dev_path  : %s\n", dev_path);
     printf("baudrate  : %d\n", baudrate);
     printf("mode      : %d\n", mode);
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])
 
     ctx = modbus_new_rtu(dev_path,
             baudrate,
-            MODBUS_SERIAL_PARITY,
+            parity,
             MODBUS_SERIAL_DATABITS,
             MODBUS_SERIAL_STOPBITS);
  
@@ -61,8 +62,8 @@ int main(int argc, char *argv[])
     modbus_set_debug(ctx, MODBUS_DEBUG);
  
     /* set timeout */
-    modbus_set_response_timeout(ctx,  MODBUS_TIMEOUT_SEC*1000, (MODBUS_TIMEOUT_SEC*1000%1000)*1000);
-    modbus_set_byte_timeout(ctx, MODBUS_TIMEOUT_SEC*1000/1000, (MODBUS_TIMEOUT_SEC*1000%1000)*1000);
+    // modbus_set_response_timeout(ctx,  MODBUS_TIMEOUT_SEC*1000, (MODBUS_TIMEOUT_SEC*1000%1000)*1000);
+    // modbus_set_byte_timeout(ctx, MODBUS_TIMEOUT_SEC*1000/1000, (MODBUS_TIMEOUT_SEC*1000%1000)*1000);
  
     if (modbus_connect(ctx) == -1) {
         fprintf(stderr, "Connexion failed: %s\n", modbus_strerror(errno));
